@@ -1,3 +1,4 @@
+const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -7,6 +8,8 @@ const passport = require("passport");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+
+dotenv.config();
 
 const app = express();
 app.set("trust proxy", 1);
@@ -25,8 +28,8 @@ app.use(
     cookie: {
       maxAge: 60 * 60 * 1000, // 1 hour
       // secure: true, // Uncomment this line to enforce HTTPS protocol.
-      sameSite: true
-    }
+      sameSite: true,
+    },
   })
 );
 app.use(passport.initialize());
@@ -35,6 +38,6 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 
-const listener = app.listen(8080, function() {
+const listener = app.listen(8080, function () {
   console.log("Listening on port " + listener.address().port);
 });

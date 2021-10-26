@@ -18,16 +18,43 @@
           </form>
         `;
         /* Get user data including email & apple count */
-        let res = await fetch(`${serverUrl}user/`);
+        let res = await fetch(`${serverUrl}user/data`);
         if (res.status == 200) {
-          let userData = await res.json();
-          let appleCount = userData.appleCount;
-          let appleDisplay =
-            appleCount > 0 ? "🍎".repeat(appleCount) : "You have no apples...";
+          let data = await res.json();
+          let userData = data.user;
+          let authzData = data.authorization.resp.resourceInstances;
           html = `
-            <h1>Current user: ${userData.email}</h1>
-            <div id="apple-count">${appleDisplay}</div>
-            <button onclick="handleBuyApple()">Buy Apple</button>
+            <h1>Current User Email: ${userData.email} (${userData.issuer})</h1>
+            <h2>Cerbos Authorization Result</h2>
+            <p>
+                This demo passes the Magic.link user information to the Cerbos PDP to authorize 
+                the user to two contact resources. The first of which you own - and thus full access - 
+                and the second you don't so have only read access. This is defined in policies found here.
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Contact ID</th>
+                  <th>Read</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>5cc22de4</td>
+                  <td>${authzData["5cc22de4"].actions.read}</td>
+                  <td>${authzData["5cc22de4"].actions.update}</td>
+                  <td>${authzData["5cc22de4"].actions.delete}</td>
+                </tr>
+                <tr>
+                  <td>ac29e6df</td>
+                  <td>${authzData["ac29e6df"].actions.read}</td>
+                  <td>${authzData["ac29e6df"].actions.update}</td>
+                  <td>${authzData["ac29e6df"].actions.delete}</td>
+                </tr>
+              </tbody>
+            </table>
             <button onclick="handleLogout()">Logout</button>
           `;
         }

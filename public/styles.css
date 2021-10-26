@@ -11,7 +11,7 @@ body {
   justify-self: center;
   background-color: #eee;
   text-align: center;
-  width: 300px;
+  width: 800px;
   padding: 27px 18px;
 }
 
@@ -21,6 +21,11 @@ h1 {
   font-size: 18px;
 }
 
+h2 {
+  margin: 0;
+  font-size: 17px;
+}
+
 input,
 button {
   padding: 9px;
@@ -28,12 +33,15 @@ button {
   margin-bottom: 9px;
 }
 
-#apple-count {
-  margin-bottom: 18px;
-  background-color: #ddd;
-  padding: 9px 0;
+table {
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
-
 form {
   margin: 0;
+}
+
+p {
+  text-align: left;
+  font-size: 16px;
 }
