@@ -11,11 +11,13 @@
       const render = async () => {
         /* Show login form if user is not logged in */
         let html = `
-          <h1>Please sign up or login</h1>
+          <h1>Magic.link + Cerbos Demo</h1>
+          <h2>Please sign up or login</h2>
           <form onsubmit="handleLogin(event)">
             <input type="email" name="email" required="required" placeholder="Enter your email" />
             <button type="submit">Send</button>
           </form>
+          <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js">original demo</a> from <a href="https://magic.link">Magic.link</a> and integrates it with <a href="https://cerbos.dev">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos">Github</a></p>
         `;
         /* Get user data including email & apple count */
         let res = await fetch(`${serverUrl}user/data`);
@@ -56,6 +58,7 @@
               </tbody>
             </table>
             <button onclick="handleLogout()">Logout</button>
+            <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js">original demo</a> from <a href="https://magic.link">Magic.link</a> and integrates it with <a href="https://cerbos.dev">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos">Github</a></p>
           `;
         }
         document.getElementById("app").innerHTML = html;

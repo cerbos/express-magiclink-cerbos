@@ -38,6 +38,6 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 
-const listener = app.listen(8080, function () {
-  console.log("Listening on port " + listener.address().port);
+const listener = app.listen(process.env.PORT, function () {
+  console.log(`Listening on port ${process.env.PORT}`);
 });
