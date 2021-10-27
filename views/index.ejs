@@ -17,7 +17,7 @@
             <input type="email" name="email" required="required" placeholder="Enter your email" />
             <button type="submit">Send</button>
           </form>
-          <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js">original demo</a> from <a href="https://magic.link">Magic.link</a> and integrates it with <a href="https://cerbos.dev">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos">Github</a></p>
+          <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js" target="_blank">original demo</a> from <a href="https://magic.link" target="_blank">Magic.link</a> and integrates it with <a href="https://cerbos.dev" target="_blank">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos" target="_blank">Github</a></p>
         `;
         /* Get user data including email & apple count */
         let res = await fetch(`${serverUrl}user/data`);
@@ -31,7 +31,7 @@
             <p>
                 This demo passes the Magic.link user information to the Cerbos PDP to authorize 
                 the user to two contact resources. The first of which you own - and thus full access - 
-                and the second you don't so have only read access. This is defined in policies found <a href="https://github.com/cerbos/express-magiclink-cerbos/blob/master/cerbos/policies/contact.yaml">here</a>.
+                and the second you don't so have only read access. This is defined in policies found <a href="https://github.com/cerbos/express-magiclink-cerbos/blob/master/cerbos/policies/contact.yaml" target="_blank">here</a>.
             </p>
             <table>
               <thead>
@@ -58,7 +58,7 @@
               </tbody>
             </table>
             <button onclick="handleLogout()">Logout</button>
-            <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js">original demo</a> from <a href="https://magic.link">Magic.link</a> and integrates it with <a href="https://cerbos.dev">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos">Github</a></p>
+            <p style="text-align: center">This is based on the <a href="https://github.com/magiclabs/magic-admin-js" target="_blank">original demo</a> from <a href="https://magic.link" target="_blank">Magic.link</a> and integrates it with <a href="https://cerbos.dev" target="_blank">Cerbos</a> for authorization. You can find the source code on <a href="https://github.com/cerbos/express-magiclink-cerbos" target="_blank">Github</a></p>
           `;
         }
         document.getElementById("app").innerHTML = html;
