@@ -7,8 +7,8 @@
     "start": "nodemon app.js localhost 8080"
   },
   "dependencies": {
+    "@cerbos/sdk": "^0.4.1",
     "@magic-sdk/admin": "^1.0.0",
-    "cerbos": "^0.0.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",

@@ -7,7 +7,7 @@ dotenv.config();
 const { Magic } = require("@magic-sdk/admin");
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
-const { Cerbos } = require("cerbos");
+const { Cerbos } = require("@cerbos/sdk");
 const cerbos = new Cerbos({
   hostname: process.env.CERBOS_INSTANCE, // The Cerbos PDP instance
 });
