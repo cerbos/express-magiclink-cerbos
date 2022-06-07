@@ -1,6 +1,6 @@
 ---
 server:
-  httpListenAddr: ":${PORT}"
+  grpcListenAddr: ":${PORT}"
 storage:
   driver: "disk"
   disk:

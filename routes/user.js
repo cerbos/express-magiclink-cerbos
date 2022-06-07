@@ -7,10 +7,11 @@ dotenv.config();
 const { Magic } = require("@magic-sdk/admin");
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
-const { Cerbos } = require("@cerbos/sdk");
-const cerbos = new Cerbos({
-  hostname: process.env.CERBOS_INSTANCE, // The Cerbos PDP instance
-});
+const { GRPC } = require("@cerbos/grpc");
+const cerbos = new GRPC(
+  process.env.CERBOS_INSTANCE,
+  { tls: process.env.CERBOS_INSTANCE_TLS === "true" } // The Cerbos PDP instance
+);
 
 /* 2️⃣ Implement Auth Strategy */
 const passport = require("passport");
@@ -59,38 +60,45 @@ router.get("/data", async (req, res) => {
       principal: {
         id: req.user.issuer,
         roles: ["user"],
-        attr: {
+        attributes: {
           email: req.user.email,
         },
       },
-      resource: {
-        kind: "contact",
-        instances: {
-          "5cc22de4": {
-            attr: {
+      resources: [
+        {
+          resource: {
+            kind: "contact",
+            id: "5cc22de4",
+            attributes: {
               owner: req.user.issuer,
-              lastUpdated: new Date(2020, 10, 10),
+              lastUpdated: new Date(2020, 10, 10).toISOString(),
             },
           },
-          ac29e6df: {
-            attr: {
-              owner: "auth0|6152dcc3ed3a290068aa12c2",
-              lastUpdated: new Date(2020, 10, 12),
-            },
-          },
+          actions: ["read", "update", "delete"],
         },
-      },
-      actions: ["read", "update", "delete"],
-      includeMeta: true,
+        {
+          resource: {
+            kind: "contact",
+            id: "ac29e6df",
+
+            attributes: {
+              owner: "auth0|6152dcc3ed3a290068aa12c2",
+              lastUpdated: new Date(2020, 10, 12).toISOString(),
+            },
+          },
+          actions: ["read", "update", "delete"],
+        },
+      ],
     };
 
-    const allowed = await cerbos.check(cerbosPayload);
+    const decision = await cerbos.checkResources(cerbosPayload);
+    console.log(decision);
 
     return res
       .status(200)
       .json({
         user: req.user,
-        authorization: allowed,
+        authorization: decision.results,
       })
       .end();
   } else {

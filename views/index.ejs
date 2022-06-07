@@ -24,7 +24,7 @@
         if (res.status == 200) {
           let data = await res.json();
           let userData = data.user;
-          let authzData = data.authorization.resp.resourceInstances;
+          let authzData = data.authorization;
           html = `
             <h1>Current User Email: ${userData.email} (${userData.issuer})</h1>
             <h2>Cerbos Authorization Result</h2>
@@ -45,15 +45,15 @@
               <tbody>
                 <tr>
                   <td>5cc22de4</td>
-                  <td>${authzData["5cc22de4"].actions.read}</td>
-                  <td>${authzData["5cc22de4"].actions.update}</td>
-                  <td>${authzData["5cc22de4"].actions.delete}</td>
+                  <td>${authzData.find(a=>a.resource.id === "5cc22de4").actions.read}</td>
+                  <td>${authzData.find(a=>a.resource.id === "5cc22de4").actions.update}</td>
+                  <td>${authzData.find(a=>a.resource.id === "5cc22de4").actions.delete}</td>
                 </tr>
                 <tr>
                   <td>ac29e6df</td>
-                  <td>${authzData["ac29e6df"].actions.read}</td>
-                  <td>${authzData["ac29e6df"].actions.update}</td>
-                  <td>${authzData["ac29e6df"].actions.delete}</td>
+                  <td>${authzData.find(a=>a.resource.id === "ac29e6df").actions.read}</td>
+                  <td>${authzData.find(a=>a.resource.id === "ac29e6df").actions.update}</td>
+                  <td>${authzData.find(a=>a.resource.id === "ac29e6df").actions.delete}</td>
                 </tr>
               </tbody>
             </table>
