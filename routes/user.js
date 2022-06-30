@@ -7,8 +7,8 @@ dotenv.config();
 const { Magic } = require("@magic-sdk/admin");
 const magic = new Magic(process.env.MAGIC_SECRET_KEY);
 
-const { GRPC } = require("@cerbos/grpc");
-const cerbos = new GRPC(
+const { GRPC: Cerbos } = require("@cerbos/grpc");
+const cerbos = new Cerbos(
   process.env.CERBOS_INSTANCE,
   { tls: process.env.CERBOS_INSTANCE_TLS === "true" } // The Cerbos PDP instance
 );
